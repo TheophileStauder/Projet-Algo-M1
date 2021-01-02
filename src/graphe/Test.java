@@ -102,10 +102,8 @@ public class Test {
 	public static void main(String[] args) {
 
 		/* QUESTION 2 */
-
-		int[] comptage = new int[8];
 		//Declaration d'une arrayList pour stocker tous les arbres couvrants*/
-		ArrayList<Graph> spanningTrees = new ArrayList<>(1000000);
+		ArrayList<Graph> kruskalSpanningTrees = new ArrayList<>(1000000);
 
 		Graph example;
 		Kruskal kruskalSolver;
@@ -113,12 +111,12 @@ public class Test {
 			example = Graph.example();
 			kruskalSolver = new Kruskal(example);
 			Graph res = kruskalSolver.calcul();
-			spanningTrees.add(res);
+			kruskalSpanningTrees.add(res);
 			/*for (int j = 0; j < 8 ; j++){
 				if(comptage[j].size() != 0 ){				//*****************************************************
 					if(comptage[j].get(0).equals(res)){   	//does not work sadly ... equals method doesn't work here
 						comptage[j].add(res);    			// even if she is implemented in the Graph class
-						System.out.println("ici");			// if this works , avoid to look at edges to classify spanning trees
+						System.out.println("ici");			// if this works , avoid to look at the edges to classify spanning trees
 					}										//*****************************************************
 				}else{
 					comptage[j].add(res);
@@ -126,6 +124,41 @@ public class Test {
 			}*/
 		}
 
+		/*RESULAT QUESTION 2 */
+		System.out.println("Kruskal results : ");
+		classifySpanningTreesForExampleGraph(kruskalSpanningTrees);
+		//////////////////////////
+
+		/* QUESTION 5 */
+		AldousBroder aldousBroder;
+		ArrayList<Graph> aldousBroderSpanningTrees = new ArrayList<>(1000000);
+		for (int i = 0; i < 1000000; i++) {
+			example = Graph.example();
+			aldousBroder = new AldousBroder(example);
+			Graph res = aldousBroder.calcul();
+			aldousBroderSpanningTrees.add(res);
+		}
+
+
+		/*RESULTATS QUESTION 5*/
+		System.out.println("\n\nAldousBroder results : ");
+		classifySpanningTreesForExampleGraph(aldousBroderSpanningTrees);
+		///////////////////////
+
+
+		/*int size = 4;
+		Graph G = Graph.Grid(size);
+		Display d = new Display();
+		//d.setImage(G.toImage());
+		System.out.println("appuyez sur une touche");
+		new Scanner(System.in).nextLine();
+		d.close();
+		printLaby(G, size, "toto.tex");*/
+
+	}
+
+	public static void classifySpanningTreesForExampleGraph(ArrayList<Graph> spanningTrees){
+		int[] comptage = new int[8];
 		/*To classify the 1 000 0000 spanning trees in 8 groups*/
 		for (Graph spanningTree : spanningTrees) {
 
@@ -154,23 +187,6 @@ public class Test {
 		for (int j = 1; j < 9; j++) {
 			System.out.println("Arbre couvrant " + j + " : " + comptage[j-1]);
 		}
-
-
-		/* QUESTION 4 */
-		AldousBroder aldousBroder = new AldousBroder(Graph.example());
-		Graph res = aldousBroder.calcul();
-		Display d = new Display();
-		d.setImage(res.toImage());
-
-		/*int size = 4;
-		Graph G = Graph.Grid(size);
-		Display d = new Display();
-		//d.setImage(G.toImage());
-		System.out.println("appuyez sur une touche");
-		new Scanner(System.in).nextLine();
-		d.close();
-		printLaby(G, size, "toto.tex");*/
-
 	}
 }
 

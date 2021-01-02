@@ -45,7 +45,6 @@ public class AldousBroder {
                 sommetsNonvisites.remove(new Integer(prochainSommet));
             }
             sommetActuel = prochainSommet;
-            System.out.println(sommetsNonvisites.size());
         }
 
         return res;
