@@ -14,13 +14,13 @@ public class Edge
 	this.used = false;
     }
     
-    final int other(int v)
+    public int other(int v)
     {
 	if (this.from == v) return this.to; else return this.from;
     }
 
     public String toString(){
-        return Integer.toString(this.to) + "->" + Integer.toString(this.from);
+        return Integer.toString(this.from) + "->" + Integer.toString(this.to);
     }
 
     public int getFrom() {

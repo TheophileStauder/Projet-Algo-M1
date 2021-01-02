@@ -23,14 +23,16 @@ public class Kruskal {
         int nbVertices = graph.vertices();
         Graph res = graph;
         ArrayList<Edge> edges = graph.edges();
+
+        /*Mélange aléatoire des arêtes*/
         Collections.shuffle(edges);
 
-        //int rand = (int) (Math.random() * (nbVertices + 1));
-        //System.out.println("RANDOM : "+ rand);
         UnionFind unionFind = new UnionFind(edges.get(0).getFrom());
         unionFind.initDisjointSets(nbVertices);
-        /*Mélange aléatoire des arêtes*/
+
+
         for(Edge e : edges){
+            /*Detection de cycle lorsqu'on tente d'jaouter l'arête e*/
             if(!unionFind.detectCycle(e.getFrom(),e.getTo())){
                 e.setUsed(true);
             }

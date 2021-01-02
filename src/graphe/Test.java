@@ -1,5 +1,6 @@
 package graphe;
 
+import algo.AldousBroder;
 import algo.Kruskal;
 
 import java.io.*;
@@ -100,7 +101,8 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		/*Question 2*/
+		/* QUESTION 2 */
+
 		int[] comptage = new int[8];
 		//Declaration d'une arrayList pour stocker tous les arbres couvrants*/
 		ArrayList<Graph> spanningTrees = new ArrayList<>(1000000);
@@ -154,15 +156,20 @@ public class Test {
 		}
 
 
+		/* QUESTION 4 */
+		AldousBroder aldousBroder = new AldousBroder(Graph.example());
+		Graph res = aldousBroder.calcul();
+		Display d = new Display();
+		d.setImage(res.toImage());
 
-		int size = 4;
+		/*int size = 4;
 		Graph G = Graph.Grid(size);
 		Display d = new Display();
 		//d.setImage(G.toImage());
 		System.out.println("appuyez sur une touche");
 		new Scanner(System.in).nextLine();
 		d.close();
-		printLaby(G, size, "toto.tex");
+		printLaby(G, size, "toto.tex");*/
 
 	}
 }

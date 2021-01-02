@@ -66,6 +66,15 @@ public class Graph{
         return list;
     }
 
+    public Edge getSpecificEdge(int u , int v){
+   		for (Edge e :edges()){
+   			if((u == e.getFrom() && v == e.getTo()) || (u == e.getTo() && v == e.getFrom())){
+   				return e;
+			}
+		}
+   		return new Edge(-1,-1);
+	}
+
     static Graph example(){
 	Graph g = new Graph(4);
 	g.setCoordinate(0, 100,100);
