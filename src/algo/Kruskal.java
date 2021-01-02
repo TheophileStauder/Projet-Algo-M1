@@ -33,7 +33,6 @@ public class Kruskal {
         for(Edge e : edges){
             if(!unionFind.detectCycle(e.getFrom(),e.getTo())){
                 e.setUsed(true);
-                res.addEdge(e);
             }
         }
 

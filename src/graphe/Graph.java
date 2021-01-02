@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.io.*;
 import java.awt.*;
 import java.awt.image.*;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Graph{
    private ArrayList<Edge>[] adj;
@@ -145,5 +147,26 @@ public class Graph{
 	catch (IOException e)
 	    {
 	    }                                             
-    }    
+    }
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Graph graph = (Graph) o;
+		return V == graph.V &&
+				E == graph.E &&
+				Arrays.equals(adj, graph.adj) &&
+				Arrays.equals(coordX, graph.coordX) &&
+				Arrays.equals(coordY, graph.coordY);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = Objects.hash(V, E);
+		result = 31 * result + Arrays.hashCode(adj);
+		result = 31 * result + Arrays.hashCode(coordX);
+		result = 31 * result + Arrays.hashCode(coordY);
+		return result;
+	}
 }
