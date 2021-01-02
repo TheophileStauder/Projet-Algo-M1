@@ -17,9 +17,7 @@ public class AldousBroder {
      * sommet quelconque , à chaque sommet non visité on garde l'arête utilisée pour arriver à ce sommet
      * On ajouter cette arête à l'abre couvrant
      */
-    public AldousBroder(Graph g){
-        this.graph = g;
-    }
+    public AldousBroder(Graph g){this.graph = g; }
 
     public Graph calcul(){
         Graph res = this.graph;

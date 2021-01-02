@@ -2,6 +2,7 @@ package graphe;
 
 import algo.AldousBroder;
 import algo.Kruskal;
+import algo.Wilson;
 
 import java.io.*;
 
@@ -144,6 +145,16 @@ public class Test {
 		System.out.println("\n\nAldousBroder results : ");
 		classifySpanningTreesForExampleGraph(aldousBroderSpanningTrees);
 		///////////////////////
+
+		/* QUESTION 5 */
+		Wilson wilson;
+		ArrayList<Graph> wilsonSpanning = new ArrayList<>(1000000);
+
+		example = Graph.example();
+		wilson = new Wilson(example);
+		Graph res = wilson.calcul();
+		Display d = new Display();
+		d.setImage(res.toImage());
 
 
 		/*int size = 4;
