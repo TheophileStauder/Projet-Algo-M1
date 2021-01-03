@@ -13,8 +13,8 @@ public class Labyrinthe {
 
     private Graph graph;
 
-    public Labyrinthe(int size) {
-        this.graph = Graph.Grid(size);
+    public Labyrinthe(Graph g) {
+        this.graph = g;
     }
 
     public Graph getLabyKruskal() {

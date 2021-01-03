@@ -91,7 +91,7 @@ public class Wilson {
                 chemin.clear();
                 chemin.add(sommetActuel);
             }
-            System.out.println("NOMBRE SOMMET VISITES " + sommetVisites.size());
+            //System.out.println("NOMBRE SOMMET VISITES " + sommetVisites.size()); //DEBUG
         }
 
         return res;
