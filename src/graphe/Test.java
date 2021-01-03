@@ -148,41 +148,55 @@ public class Test {
 
 		/* QUESTION 6 */
 		Wilson wilson;
-		ArrayList<Graph> wilsonSpanning = new ArrayList<>(1000000);
+		ArrayList<Graph> wilsonSpanningTrees = new ArrayList<>(1000000);
 
-		example = Graph.example();
-		wilson = new Wilson(example);
-		Graph res = wilson.calcul();
-		Display d = new Display();
-		//d.setImage(res.toImage());
+		for (int i = 0; i < 1000000; i++) {
+			example = Graph.example();
+			wilson = new Wilson(example);
+			Graph res = wilson.calcul();
+			wilsonSpanningTrees.add(res);
+		}
+
+		/*RESULTATS QUESTION 6*/
+		System.out.println("\n\nWilson results : ");
+		classifySpanningTreesForExampleGraph(wilsonSpanningTrees);
+		///////////////////////
+
+
 
 		/*QUESTION 7*/
 
 		Labyrinthe labyrinthe;
 		int impasseKruskal,impasseAldous,totalImpasseK, totalImpasseA;
 		impasseKruskal = impasseAldous = totalImpasseK = totalImpasseA = 0;
-		for(int i = 0 ; i < 2000 ; i++){
+		int nbLaby = 2000;
+		for(int i = 0 ; i < nbLaby ; i++){
 			labyrinthe = new Labyrinthe(Graph.Grid(20));
 			Graph labyKruskal = labyrinthe.getLabyKruskal();
 			labyrinthe = new Labyrinthe(Graph.Grid(20));
 			Graph labyAldousBroder = labyrinthe.getLabyAldousBroder();
+
 			int[] degreSommetKruskal = new int[labyKruskal.vertices()];
 			int[] degreSommetAldous = new int[labyAldousBroder.vertices()];
-
 			//On va compter le degre pour chaque sommet du labyrinthe
 			for(Edge e : labyKruskal.edges()){
-				degreSommetKruskal[e.getFrom()]++;
-				degreSommetKruskal[e.getTo()]++;
+				if(e.used){
+					degreSommetKruskal[e.getFrom()]++;
+					degreSommetKruskal[e.getTo()]++;
+				}
+
 			}
 
 			for(Edge e : labyAldousBroder.edges()){
-				degreSommetAldous[e.getFrom()]++;
-				degreSommetAldous[e.getTo()]++;
+				if(e.used){
+					degreSommetAldous[e.getFrom()]++;
+					degreSommetAldous[e.getTo()]++;
+				}
 			}
 
 			//Une impasse est équivalent à un sommet de degre un, on va toutes les compter pour chaque labyrinthe
 			for(int taille = 0; taille < labyKruskal.vertices() - 1 ; taille++){
-				if(degreSommetKruskal[taille] == 1){impasseKruskal ++;System.out.println("COUCOU");}
+				if(degreSommetKruskal[taille] == 1){impasseKruskal ++;}
 				//System.out.println("SOMMET "+ taille + " nombre arete "+ degreSommetKruskal[taille]);
 			}
 			totalImpasseK = totalImpasseK + impasseKruskal;
@@ -197,8 +211,10 @@ public class Test {
 			impasseAldous = 0;
 
 		}
-		System.out.println("Impasse Kruskal : " + totalImpasseK);
-		System.out.println("Impasse Aldous : " + totalImpasseK);
+
+		System.out.println("\nSTATISTIQUES LABYRINTHE (sur " + nbLaby + " labyritnhes ");
+		System.out.println("\nImpasse Kruskal : " + totalImpasseK);
+		System.out.println("Impasse Aldous : " + totalImpasseA);
 		/*int size = 4;
 		Graph G = Graph.Grid(size);
 		Display d = new Display();
